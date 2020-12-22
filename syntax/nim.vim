@@ -53,8 +53,11 @@ syn keyword nimKeyword       when while with without
 syn keyword nimKeyword       xor
 syn keyword nimKeyword       yield
 
-syn match   nimFunction      "[a-zA-Z_][a-zA-Z0-9_]*\*\ze(.*)"
-syn match   nimType          ":\s*\zs[A-Z_][a-zA-Z0-9_]*\ze.*=" skipwhite
+syn match nimFunction       "[a-zA-Z_][a-zA-Z0-9_]*\ze(.*)"
+" Publicly exported function
+syn match nimExportFunction "[a-zA-Z_][a-zA-Z0-9_]*\*\ze(.*)" contains=nimExportStar
+syn match nimExportStar     "\*" contained
+syn match nimType           ":\s*\zs[A-Z_][a-zA-Z0-9_]*\ze.*=" skipwhite
 " syn match   nimFieldName     "[a-z][a-zA-Z0-9_]*\ze:"
 syn keyword nimRepeat        for while
 syn keyword nimConditional   if elif else case of
@@ -165,22 +168,24 @@ if v:version >= 508 || !exists('did_nim_syn_inits')
     endif
 
     " The default methods for highlighting.  Can be overridden later
-    HiLink nimBrackets    Operator
-    HiLink nimKeyword     Keyword
-    HiLink nimFunction    Function
-    HiLink nimType        Type
-    HiLink nimConditional Conditional
-    HiLink nimRepeat      Repeat
-    HiLink nimString      String
-    HiLink nimRawString   String
-    HiLink nimBoolean     Boolean
-    HiLink nimEscape      Special
-    HiLink nimOperator    Operator
-    HiLink nimPreCondit   PreCondit
-    HiLink nimComment     Comment
-    HiLink nimTodo        Todo
-    HiLink nimDecorator   Define
-    HiLink nimSpecialVar  Identifier
+    HiLink nimBrackets       Operator
+    HiLink nimKeyword        Keyword
+    HiLink nimFunction       Function
+    HiLink nimExportFunction Function
+    HiLink nimExportStar     Label
+    HiLink nimType           Type
+    HiLink nimConditional    Conditional
+    HiLink nimRepeat         Repeat
+    HiLink nimString         String
+    HiLink nimRawString      String
+    HiLink nimBoolean        Boolean
+    HiLink nimEscape         Special
+    HiLink nimOperator       Operator
+    HiLink nimPreCondit      PreCondit
+    HiLink nimComment        Comment
+    HiLink nimTodo           Todo
+    HiLink nimDecorator      Define
+    HiLink nimSpecialVar     Identifier
 
     if g:nim_highlight_numbers == 1
         HiLink nimNumber    Number
