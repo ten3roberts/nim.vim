@@ -53,7 +53,7 @@ syn keyword nimKeyword       when while with without
 syn keyword nimKeyword       xor
 syn keyword nimKeyword       yield
 
-syn match   nimFunction      "[a-zA-Z_][a-zA-Z0-9_]*\ze(.*)"
+syn match   nimFunction      "[a-zA-Z_][a-zA-Z0-9_]*\*\ze(.*)"
 syn match   nimType          ":\s*\zs[A-Z_][a-zA-Z0-9_]*\ze.*=" skipwhite
 " syn match   nimFieldName     "[a-z][a-zA-Z0-9_]*\ze:"
 syn keyword nimRepeat        for while
